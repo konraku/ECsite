@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/testcomponent1', [TestComponent::class, 'showComponent1']);
-Route::get('/testcomponent2', [TestComponent::class, 'showComponent2']);
+Route::get('/test1', [TestComponent::class, 'showComponent1']);
+Route::get('/test2', [TestComponent::class, 'showComponent2']);
 
 require __DIR__.'/auth.php';

@@ -11,9 +11,9 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest')->group(function () {
-    Route::get('register', [RegisteredUserController::class, 'create'])
-                ->name('register');
+Route::middleware('guest')->group(function () {//middleware guestだったら"ログインしていなかったら"という条件
+    Route::get('register', [RegisteredUserController::class, 'create'])//[]でコントローラー名、メソッド名
+                ->name('register');//名前付きルート
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 

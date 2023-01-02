@@ -6,5 +6,6 @@
 
     <x-tests.card title="タイトル" content="本文" :message='$message'/>
     <x-tests.card title="タイトルー"/>
+    <x-tests.card title="CSS"/>
     <div>{{ $data }}</div>
 </x-tests.app>

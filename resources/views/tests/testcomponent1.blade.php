@@ -4,5 +4,6 @@
     </x-slot>
     うんち
 
-    <x-tests.card title="タイトル" content="本文" />
+    <x-tests.card title="タイトル" content="本文" :message='$message'/>
+    <div>{{ $data }}</div>
 </x-tests.app>

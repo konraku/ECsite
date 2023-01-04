@@ -1,3 +1,4 @@
+<title>うんち</title>
 <x-tests.app>
     <x-slot name="unko">
         header1

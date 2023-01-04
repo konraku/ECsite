@@ -30,7 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+//テスト
 Route::get('/test1', [TestComponent::class, 'showComponent1']);
+Route::get('/test2', [TestComponent::class, 'showComponent2']);
 Route::get('/sarvicecontainertest', [LifeCycleTestController::class, 'showSeviceContainerTest']);
+Route::get('/providertest', [LifeCycleTestController::class, 'providerTest']);
 
 require __DIR__.'/auth.php';

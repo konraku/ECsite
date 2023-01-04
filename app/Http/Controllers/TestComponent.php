@@ -10,6 +10,7 @@ class TestComponent extends Controller
     public function showComponent1(){
         $message = '123';
         $data = 'hello';
+        //compact() 渡された複数の変数名をキーとする連想配列を返す
         return view('tests.testcomponent1',compact('message', 'data'));
     }
     public function showComponent2(){

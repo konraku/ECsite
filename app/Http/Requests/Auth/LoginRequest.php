@@ -44,7 +44,7 @@ class LoginRequest extends FormRequest
         「Auth::attempt()」指定されたメールアドレスとパスワードを使用して認証をう
         「RateLimiter::hit()」指定されたキーに対するリクエスト制限のカウントを増やす
         「ValidationException::withMessages()」指定されたエラーメッセージを含むバリデーションエラーを投げる
-        「RateLimiter::clear()」指定されたキーに対するリクエスト制限のカウントをリセット
+        「RateLimiter::clear()」指定されたキーに対するリクエスト制限のカウントをリセットする
         */
         if ($this->routeIs('owner.*')) {
             $guard = 'owners';

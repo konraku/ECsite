@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Owner; //Eloquent
+use Illuminate\Support\Facades\DB; //QueryBuilder
+use Carbon\Carbon; //日付ライブラリ
 
 class OwnersController extends Controller
 {
@@ -20,7 +23,17 @@ class OwnersController extends Controller
      */
     public function index()
     {
-        dd('オーナー用');
+        /*
+        $data_now = Carbon::now();
+        $data_parse = Carbon::parse(now());
+        echo $data_now->day;
+        echo '-------------';
+        echo $data_parse;
+        */
+        
+        $e_all = Owner::all();
+        $q_get = DB::table('owners')->select('name', 'created_at')->get();
+        return view('admin.owners.index', compact('e_all', 'q_get'));
     }
 
     /**

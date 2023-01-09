@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Owner; //Eloquent
 use Illuminate\Support\Facades\DB; //QueryBuilder
 use Carbon\Carbon; //日付ライブラリ
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class OwnersController extends Controller
 {
@@ -23,16 +25,7 @@ class OwnersController extends Controller
      */
     public function index()
     {
-        /*
-        $data_now = Carbon::now();
-        $data_parse = Carbon::parse(now());
-        echo $data_now->day;
-        echo '-------------';
-        echo $data_parse;
-        */
-        //$q_get = DB::table('owners')->select('name', 'created_at')->get();
-
-        $owners = Owner::select('name', 'email', 'created_at')->get();
+        $owners = Owner::select('id', 'name', 'email', 'created_at')->get();
         return view('admin.owners.index', compact('owners'));
     }
 
@@ -54,7 +47,30 @@ class OwnersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*
+        入力されたデータを検証して、それが妥当であるかどうかを確認する。
+        emailフィールドは必須であり、文字列であること、メールアドレスであること、
+        最大255文字以内であること、およびOwnersテーブル内でユニークであることを確認している。
+        passwordフィールドは必須であり、確認用のパスワードと一致していること、
+        Passwordクラスによって定義されたデフォルトのルールを満たしていることを確認している。
+        */
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.Owner::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        /*
+        Ownerクラスを使用して新しいオーナーを作成し、そのデータをデータベースに保存する。
+        また、パスワードはHash::make()を使用してハッシュ化される
+        */
+        Owner::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->route('admin.owners.index');
     }
 
     /**

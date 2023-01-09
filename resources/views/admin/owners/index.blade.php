@@ -18,6 +18,7 @@
                             <table class="table-auto w-full text-left whitespace-no-wrap">
                               <thead>
                                 <tr>
+                                  <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">id</th>
                                   <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">name</th>
                                   <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">email</th>
                                   <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">create_at</th>
@@ -27,6 +28,7 @@
                               <tbody>
                                 @foreach ($owners as $owner)
                                 <tr>
+                                  <td class="px-4 py-3">{{ $owner->id }}</td>
                                   <td class="px-4 py-3">{{ $owner->name }}</td>
                                   <td class="px-4 py-3">{{ $owner->email }}</td>
                                   <td class="px-4 py-3">{{ $owner->created_at }}

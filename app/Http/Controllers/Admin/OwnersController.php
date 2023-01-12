@@ -92,9 +92,11 @@ class OwnersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id)//何番目の情報か
     {
-        //
+        $owner = Owner::findOrFail($id);
+        //dd($owner);
+        return view('admin.owners.edit', compact('owner'));
     }
 
     /**
@@ -106,7 +108,13 @@ class OwnersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $owner = Owner::findOrFail($id);
+        $owner->name = $request->name;
+        $owner->email = $request->email;
+        $owner->password = Hash::make($request->password);
+        $owner->save();
+
+        return redirect()->route('admin.owners.index')->with('message','Updated!' );
     }
 
     /**

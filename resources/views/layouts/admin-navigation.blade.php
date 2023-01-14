@@ -23,6 +23,10 @@
                     <x-nav-link :href="route('admin.owners.create')" :active="request()->routeIs('admin.owners.create')">
                         REGISTER
                     </x-nav-link>
+                    
+                    <x-nav-link :href="route('admin.expired-owners.index')" :active="request()->routeIs('admin.expired-owners.index')">
+                        EXPIRED OWNERS
+                    </x-nav-link>
                 </div>
             </div>
 

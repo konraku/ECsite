@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Owners') }}
+            {{ __('Expired Owners') }}
         </h2>
     </x-slot>
 
@@ -14,39 +14,30 @@
                           <!--フラッシュメッセージ-->
                           <x-flash-message status="session('status')" />
                           <div class="lg:w-2/3 w-full mx-auto overflow-auto">
-                            <div class="flex justify-end mb-4 ">
-                              <button onclick="location.href='{{ route('admin.owners.create') }}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">create</button>
-                            </div>
                             <table class="table-auto w-full text-left whitespace-no-wrap">
                               <thead>
                                 <tr>
                                   <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">id</th>
                                   <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">name</th>
                                   <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">email</th>
-                                  <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">create_at</th>
-                                  <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                                  <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">expired</th>
                                   <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                                 </tr>
                               </thead>
                               <tbody>
-                                @foreach ($owners as $owner)
+                                @foreach ($expiredOwner as $owner)
                                 <tr>
                                   <td class="px-4 py-3">{{ $owner->id }}</td>
                                   <td class="px-4 py-3">{{ $owner->name }}</td>
                                   <td class="px-4 py-3">{{ $owner->email }}</td>
-                                  <td class="px-4 py-3">{{ $owner->created_at }}</td>
-                                  
-                                  <!--edit-->
-                                  <td class="w-10 text-center">
-                                  <button onclick="location.href='{{ route('admin.owners.edit', ['owner' => $owner->id]) }}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded ">edit</button>
-                                  </td>
+                                  <td class="px-4 py-3">{{ $owner->deleted_at }}</td>
+
                                   
                                   <!--delete-->
-                                  <form id="delete_{{ $owner->id }}" method="post" action="{{ route('admin.owners.destroy', ['owner' => $owner->id] )}}">
+                                  <form id="delete_{{ $owner->id }}" method="post" action="{{ route('admin.expired-owners.destroy', ['owner' => $owner->id] )}}">
                                     @csrf
-                                    @method('delete')
                                     <td class="w-10 text-center">
-                                      <a hreh="#" data-id="{{ $owner->id }}" onclick="deletePost(this)" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded ">delete</a>
+                                      <a hreh="#" data-id="{{ $owner->id }}" onclick="deletePost(this)" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded ">permanently</a>
                                     </td>
                                   </form>
                                 </tr>
@@ -56,19 +47,6 @@
                           </div>
                         </div>
                       </section>
-                    {{--
-                    エロクアント
-                    @foreach ($e_all as $e_owner)
-                        {{ $e_owner->name }}
-                        {{ $e_owner->created_at->diffForHumans() }}
-                    @endforeach
-                    <br>
-                    クエリビルダ
-                    @foreach ($q_get as $q_owner)
-                        {{ $q_owner->name }}
-                        {{ Carbon\Carbon::parse($q_owner->created_at)->diffForHumans() }}                
-                    @endforeach
-                    --}}
                 </div>
             </div>
         </div>

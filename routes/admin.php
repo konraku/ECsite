@@ -26,9 +26,9 @@ use App\Http\Controllers\Admin\OwnersController;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.welcome');
-});
+// Route::get('/', function () {
+//     return view('admin.welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');

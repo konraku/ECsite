@@ -80,7 +80,16 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('DASHBOARD') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.owners.index')" :active="request()->routeIs('admin.owners.index')">
+                {{ __('OWNERS') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.owners.create')" :active="request()->routeIs('admin.owners.create')">
+                {{ __('REGISTER') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admin.expired-owners.index')" :active="request()->routeIs('admin.expired-owners.index')">
+                {{ __('EXPIRED OWNERS') }}
             </x-responsive-nav-link>
         </div>
 

@@ -8,9 +8,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+                <div class="md:p-6 text-gray-900">
                     <section class="text-gray-600 body-font mb-14">
-                        <div class="container px-5 mx-auto">
+                        <div class="container md:px-5 mx-auto">
                           <!--フラッシュメッセージ-->
                           <x-flash-message status="session('status')" />
                           <div class="lg:w-2/3 w-full mx-auto overflow-auto">
@@ -20,24 +20,24 @@
                             <table class="table-auto w-full text-left whitespace-no-wrap">
                               <thead>
                                 <tr>
-                                  <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">id</th>
-                                  <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">name</th>
-                                  <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">email</th>
-                                  <th class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">create_at</th>
-                                  <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
-                                  <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                                  <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">id</th>
+                                  <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">name</th>
+                                  <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">email</th>
+                                  <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">create_at</th>
+                                  <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                                  <th class="md:px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                                 </tr>
                               </thead>
                               <tbody>
                                 @foreach ($owners as $owner)
                                 <tr>
-                                  <td class="px-4 py-3">{{ $owner->id }}</td>
-                                  <td class="px-4 py-3">{{ $owner->name }}</td>
-                                  <td class="px-4 py-3">{{ $owner->email }}</td>
-                                  <td class="px-4 py-3">{{ $owner->created_at }}</td>
+                                  <td class="md:px-4 py-3">{{ $owner->id }}</td>
+                                  <td class="md:px-4 py-3">{{ $owner->name }}</td>
+                                  <td class="md:px-4 py-3">{{ $owner->email }}</td>
+                                  <td class="md:px-4 py-3">{{ $owner->created_at }}</td>
                                   
                                   <!--edit-->
-                                  <td class="w-10 text-center">
+                                  <td class="md:w-10 text-center">
                                   <button onclick="location.href='{{ route('admin.owners.edit', ['owner' => $owner->id]) }}'" class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded ">edit</button>
                                   </td>
                                   
@@ -45,7 +45,7 @@
                                   <form id="delete_{{ $owner->id }}" method="post" action="{{ route('admin.owners.destroy', ['owner' => $owner->id] )}}">
                                     @csrf
                                     @method('delete')
-                                    <td class="w-10 text-center">
+                                    <td class="md:w-10 text-center">
                                       <a hreh="#" data-id="{{ $owner->id }}" onclick="deletePost(this)" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded ">delete</a>
                                     </td>
                                   </form>

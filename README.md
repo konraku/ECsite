@@ -3,3 +3,7 @@
 
 ## admin(管理者)
 ![タイトルなし](https://user-images.githubusercontent.com/78332861/212470070-34332121-659e-4cfe-8f8e-cb1be02d095d.png)
+
+## oener(所有者)
+
+## user(利用者)

@@ -10,6 +10,14 @@ class Shop extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'owner_id',
+        'name',
+        'information',
+        'filename',
+        'is_selling'
+    ];
+
     /**
      * Shopを所有しているOwnerを取得
      */

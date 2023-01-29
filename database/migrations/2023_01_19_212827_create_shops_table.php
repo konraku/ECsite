@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
+            //外部キー誓約
             $table->foreignId('owner_id')->constrained();
             $table->string('name');
             $table->text('information');

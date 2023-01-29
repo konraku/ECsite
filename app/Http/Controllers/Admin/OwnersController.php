@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Owner; //Eloquent
+use App\Models\Shop;
 use Illuminate\Support\Facades\DB; //QueryBuilder
 use Carbon\Carbon; //日付ライブラリ
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
+use Throwable;
 
 class OwnersController extends Controller
 {
@@ -60,15 +63,31 @@ class OwnersController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        try{
+            DB::transaction(function () use($request){
+                $owner = Owner::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                ]);
+
+                Shop::create([
+                    'owner_id' => $owner->id,
+                    'name' => 'Please enter the store name',
+                    'information' => '',
+                    'filename' => '',
+                    'is_selling' => true
+                ]);
+            }, 2);
+        }catch(Throwable $e){
+            Log::error($e);
+            throw $e;
+        }
+
         /*
         Ownerクラスを使用して新しいオーナーを作成し、そのデータをデータベースに保存する。
         また、パスワードはHash::make()を使用してハッシュ化される
         */
-        Owner::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
 
         return redirect()
         ->route('admin.owners.index')

@@ -1,7 +1,10 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
-    ユーザー用
+    ユーザー用<br>
+    @php
+
+    @endphp
 
     <form method="POST" action="{{ route('user.login') }}">
         @csrf

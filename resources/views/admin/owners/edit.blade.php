@@ -39,11 +39,13 @@
           <div class="relative">
             <label for="shop" class="leading-7 text-sm text-gray-600">店名</label>
             <div required class="w-full bg-gray-100 bg-opacity-50 rounded  focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-              <?php
-              $data = $owner->shop;
-              $data = json_decode($data, true);
-              echo $data[0]['name'];
-              ?>
+              <!--選択した値によって、紐づけられているshopのnameを変更(予定)owner側で作成後-->
+              @php
+                  $data = $owner->shop;
+                  foreach($data as $shop){
+                    echo $shop['name'];
+                  }
+              @endphp
             </div>
               <x-input-error :messages="$errors->get('email')" class="mt-2" />
           </div>

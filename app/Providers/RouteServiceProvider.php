@@ -51,6 +51,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->as('user.')
                 ->middleware('web')
                 ->group(base_path('routes/web.php'));//user入れない？
+
+            Route::middleware('web')
+            ->group(base_path('routes/test.php'));//user入れない？
         });
     }
 
